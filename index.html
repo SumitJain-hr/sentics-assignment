@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentics | Redesign Concept - Modernizing Digital Commerce</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Figtree Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;800&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to adhere strictly to the Styleguide */
+        :root {
+            --sentics-blue: #243652; /* Primary Brand Blue */
+            --sentics-cream: #f0ede3; /* Background/Off-White */
+            --sentics-orange: #E26425; /* Accent Orange */
+        }
+        
+        /* Apply Figtree font and default colors */
+        body {
+            font-family: 'Figtree', sans-serif;
+            color: var(--sentics-blue);
+            background-color: white; 
+        }
+        
+        /* Tailwind Configuration for custom colors */
+        .sentics-blue { color: var(--sentics-blue); }
+        .bg-sentics-blue { background-color: var(--sentics-blue); }
+        .bg-sentics-cream { background-color: var(--sentics-cream); }
+        .bg-sentics-orange { background-color: var(--sentics-orange); }
+        .text-figtree-extrabold { font-weight: 800; }
+        
+        /* Style for the Primary CTA */
+        .cta-primary {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(36, 54, 82, 0.4);
+        }
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(36, 54, 82, 0.6);
+        }
+
+        /* ANIMATION 2: Scroll-Triggered Fade (For Intersection Observer) */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ANIMATION 3: Hero Headline Stagger (Initial Load) */
+        .hero-stagger-initial {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .hero-stagger-initial.is-loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Logo Symbol (S) - SVG used for precision */
+        .sentics-logo-symbol {
+            width: 24px;
+            height: 24px;
+            fill: var(--sentics-blue);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 1. Header & Navigation (Fixed for visibility) -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-100/50 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo (Wort-Bildmarke) -->
+            <a href="#" class="flex items-center space-x-2 text-xl text-sentics-blue font-bold text-figtree-extrabold">
+                <!-- Simple SVG Logo for demonstration (S Mark) -->
+                <svg class="sentics-logo-symbol" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 0 C77.6 0 100 22.4 100 50 C100 77.6 77.6 100 50 100 C22.4 100 0 77.6 0 50 C0 22.4 22.4 0 50 0 Z M50 20 C66.5 20 80 33.5 80 50 C80 66.5 66.5 80 50 80 C33.5 80 20 66.5 20 50 C20 33.5 33.5 20 50 20 Z M50 35 L40 35 L40 65 L60 65 L60 55 L50 55 Z"/>
+                    <path fill="white" d="M50 20 C66.5 20 80 33.5 80 50 C80 66.5 66.5 80 50 80 C33.5 80 20 66.5 20 50 C20 33.5 33.5 20 50 20 Z M50 35 L40 35 L40 65 L60 65 L60 55 L50 55 Z"/>
+                </svg>
+                <span class="text-2xl tracking-tight">sentics</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-normal">
+                <a href="#" class="hover:text-sentics-orange transition duration-200">Solutions</a>
+                <a href="#" class="hover:text-sentics-orange transition duration-200">Expertise</a>
+                <a href="#" class="hover:text-sentics-orange transition duration-200">Career</a>
+                <a href="#" class="hover:text-sentics-orange transition duration-200">Contact</a>
+                
+                <!-- Primary CTA Button -->
+                <button class="cta-primary px-5 py-2 rounded-full text-sm bg-sentics-blue text-white font-normal hover:bg-gray-800 hero-stagger-initial" style="transition-delay: 0.3s;">
+                    Request a Consultation
+                </button>
+            </div>
+            
+            <!-- Mobile Menu Icon (Hamburger) -->
+            <button class="md:hidden p-2 rounded-md hover:bg-gray-100 transition duration-150">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 2. Hero Section - Image Above, Content Centered (NEW STRUCTURE) -->
+        <section class="bg-sentics-cream/50 pt-0 sm:pb-48 relative overflow-hidden">
+            
+            <!-- 2A. Full-Width Image (Touches Borders) -->
+            <div class="w-full h-[50vh] sm:h-[60vh] overflow-hidden">
+                <img 
+                    src="https://sentics.de/wp-content/uploads/2025/02/Home-stapler-sicherheit.webp" 
+                    alt="Industrial logistics containers representing scalable commerce architecture"
+                    class="w-full h-full object-cover"
+                >
+            </div>
+
+            <!-- 2B. Centered Text Content (Pulled up using -mt-24) -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 -mt-24">
+                <div class="lg:w-4/5 mx-auto text-center  p-8 sm:p-12 rounded-xl shadow-2xl hero-stagger-initial">
+                    <!-- H1: Centered -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl text-figtree-extrabold leading-tight tracking-tighter mb-4">
+                        Engineering Digital <span class="text-sentics-orange">Commerce</span> with Precision.
+                    </h1>
+                    <!-- Sub-Headline: Centered -->
+                    <p class="text-lg sm:text-xl mb-8 text-sentics-blue/80 mx-auto max-w-2xl">
+                        Sentics delivers high-precision, scalable cloud and data solutions that drive sustainable growth for global enterprises.
+                    </p>
+                    
+                    <!-- Primary CTA Button (Centered) -->
+                    <button class="cta-primary px-8 py-3 rounded-full text-lg bg-sentics-blue text-white font-normal hover:bg-gray-800">
+                        Start Your Project Now →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Data-Driven Impact (Statistics with Counting Animation) -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 bg-white fade-in-up" data-stats-section>
+            <h2 class="text-4xl text-center text-figtree-extrabold mb-16">The Impact of Precision Engineering</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <!-- Stat Block 1: Uptime -->
+                <div class="border-t-4 border-sentics-orange pt-4">
+                    <!-- Data attributes for JS counting -->
+                    <p class="text-6xl text-figtree-extrabold text-sentics-blue/90" data-stat-target="99.9" data-stat-suffix="%" data-stat-duration="1500" data-stat-decimal="1">0%</p>
+                    <p class="text-sm uppercase tracking-widest text-sentics-blue/70 mt-2">Uptime Achieved</p>
+                </div>
+                <!-- Stat Block 2: Revenue Growth -->
+                <div class="border-t-4 border-sentics-orange pt-4">
+                    <p class="text-6xl text-figtree-extrabold text-sentics-blue/90" data-stat-target="45" data-stat-prefix="+" data-stat-suffix="%" data-stat-duration="1800" data-stat-decimal="0">0%</p>
+                    <p class="text-sm uppercase tracking-widest text-sentics-blue/70 mt-2">Revenue Growth for Clients</p>
+                </div>
+                <!-- Stat Block 3: Latency -->
+                <div class="border-t-4 border-sentics-orange pt-4">
+                    <p class="text-6xl text-figtree-extrabold text-sentics-blue/90" data-stat-target="20" data-stat-suffix=" ms" data-stat-duration="1200" data-stat-decimal="0">0 ms</p>
+                    <p class="text-sm uppercase tracking-widest text-sentics-blue/70 mt-2">Avg. Platform Latency</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 4. The Sentics Difference (Split-Screen High-End Section) -->
+        <section class="bg-sentics-blue py-24">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center px-4 sm:px-6 lg:px-8">
+                <!-- Text Content (Right) -->
+                <div class="text-white fade-in-up">
+                    <h2 class="text-sm uppercase tracking-widest text-sentics-orange mb-4">The Sentics Difference </h2>
+                    <h3 class="text-5xl text-figtree-extrabold leading-tight mb-6">Built on Trust, Driven by Data Excellence.</h3>
+                    <p class="text-lg text-white/80 mb-6">
+                        We don't just deliver solutions; we engineer long-term, scalable foundations. Our approach combines rigorous German engineering principles with agile, adaptive development to ensure platform longevity and performance.
+                    </p>
+                    <ul class="space-y-3 text-white/90">
+                        <li>→ High-Security Cloud Architecture</li>
+                        <li>→ Transparent Partnership Model</li>
+                        <li>→ Sustainable E-Commerce Scaling</li>
+                    </ul>
+                    <a href="#" class="inline-flex items-center text-sentics-orange hover:text-white transition duration-200 text-base font-normal mt-6">
+                        Read Our Full Story
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Visual/Graphic Area (Left) - Now using the correct direct URL -->
+                <div class="h-96 w-full rounded-lg shadow-2xl relative overflow-hidden fade-in-up" style="transition-delay: 0.1s;">
+                     <img 
+                        src="https://sentics.de/wp-content/uploads/2025/02/Home-stapler-sicherheit.webp" 
+                        alt="Image of a stack of containers, symbolizing robust security and logistics."
+                        class="w-full h-full object-cover bg-gray-900"
+                        onerror="this.onerror=null; this.src='https://placehold.co/1000x1000/070605/f0ede3?text=Image+Failed+to+Load'"
+                     >
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Core Competencies - The "What We Do" -->
+        <section class="bg-sentics-cream py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl text-center text-figtree-extrabold mb-16 fade-in-up">The Sentics Ecosystem: Precision at Scale</h2>
+                
+                <div class="grid md:grid-cols-3 gap-10">
+                    <!-- Competency 1: Cloud & Infrastructure -->
+                    <div class="bg-white p-8 rounded-lg shadow-xl hover:shadow-2xl transition duration-300 fade-in-up">
+                        <!-- Icon (Cloud) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-sentics-orange mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
+                        <h3 class="text-xl text-figtree-extrabold mb-3">Cloud Infrastructure</h3>
+                        <p class="text-sm text-gray-600">Building resilient, secure, and scalable cloud foundations to host next-generation commerce platforms. Expertise in modern serverless and container orchestration.</p>
+                    </div>
+                    
+                    <!-- Competency 2: Data & Analytics -->
+                    <div class="bg-white p-8 rounded-lg shadow-xl hover:shadow-2xl transition duration-300 fade-in-up" style="transition-delay: 0.1s;">
+                        <!-- Icon (Data) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-sentics-orange mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 12l3-3 3 3 3-3M3 21h18M5 5a2 2 0 012-2h10a2 2 0 012 2v2a2 2 0 01-2 2H7a2 2 0 01-2-2V5z" /></svg>
+                        <h3 class="text-xl text-figtree-extrabold mb-3">Data Intelligence</h3>
+                        <p class="text-sm text-gray-600">Transforming raw data into actionable intelligence. We implement custom data pipelines, machine learning models, and real-time reporting solutions for business strategy.</p>
+                    </div>
+                    
+                    <!-- Competency 3: E-Commerce Platforms -->
+                    <div class="bg-white p-8 rounded-lg shadow-xl hover:shadow-2xl transition duration-300 fade-in-up" style="transition-delay: 0.2s;">
+                        <!-- Icon (E-Commerce) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-sentics-orange mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c1.657 0 3 .895 3 2s-1.343 2-3 2h-1v2H7v-2H6z" /><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5H4m10 10a1 1 0 110 2 1 1 0 010-2z" /></svg>
+                        <h3 class="text-xl text-figtree-extrabold mb-3">Custom Platforms</h3>
+                        <p class="text-sm text-gray-600">Designing and integrating highly customized E-Commerce platforms (headless, microservices) optimized for high volume, fast loading, and international deployment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Conversion Strip - Dedicated, high-contrast CTA -->
+        <section class="bg-gray-900 py-20 fade-in-up">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl text-white text-figtree-extrabold mb-6">Ready to Define Your Future?</h2>
+                <p class="text-xl text-white/70 mb-8">It takes precision and innovative technology to stay ahead. Let's build a foundation for lasting success.</p>
+                <button class="cta-primary px-8 py-3 rounded-full text-lg bg-sentics-orange text-white font-normal hover:bg-gray-700/80 hover:bg-opacity-100 shadow-xl" style="box-shadow: 0 4px 15px rgba(226, 100, 37, 0.4);">
+                    Book a Strategy Session
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- 7. Footer -->
+    <footer class="bg-sentics-blue text-white/80 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-5 gap-8 text-sm">
+            
+            <!-- Logo Column -->
+            <div class="col-span-2 md:col-span-1">
+                 <a href="#" class="flex items-center space-x-2 text-2xl text-white font-bold text-figtree-extrabold mb-4">
+                    <!-- SVG Image Mark (White for Footer) -->
+                    <svg class="h-6 w-6" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="white">
+                        <path d="M50 0 C77.6 0 100 22.4 100 50 C100 77.6 77.6 100 50 100 C22.4 100 0 77.6 0 50 C0 22.4 22.4 0 50 0 Z M50 20 C66.5 20 80 33.5 80 50 C80 66.5 66.5 80 50 80 C33.5 80 20 66.5 20 50 C20 33.5 33.5 20 50 20 Z M50 35 L40 35 L40 65 L60 65 L60 55 L50 55 Z"/>
+                        <path fill="#243652" d="M50 20 C66.5 20 80 33.5 80 50 C80 66.5 66.5 80 50 80 C33.5 80 20 66.5 20 50 C20 33.5 33.5 20 50 20 Z M50 35 L40 35 L40 65 L60 65 L60 55 L50 55 Z"/>
+                    </svg>
+                    <span class="tracking-tight">sentics</span>
+                </a>
+                <p class="text-xs mt-2">Engineering Digital Commerce.</p>
+            </div>
+
+            <!-- Links Column 1 -->
+            <div class="space-y-3">
+                <h4 class="text-white text-base font-medium">Company</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-sentics-orange transition duration-200">About Us</a></li>
+                    <li><a href="#" class="hover:text-sentics-orange transition duration-200">Career</a></li>
+                    <li><a href="#" class="hover:text-sentics-orange transition duration-200">Imprint</a></li>
+                </ul>
+            </div>
+
+            <!-- Links Column 2 -->
+            <div class="space-y-3">
+                <h4 class="text-white text-base font-medium">Services</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-sentics-orange transition duration-200">Cloud Solutions</a></li>
+                    <li><a href="#" class="hover:text-sentics-orange transition duration-200">Data Analytics</a></li>
+                    <li><a href="#" class="hover:text-sentics-orange transition duration-200">E-Commerce</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="col-span-2 md:col-span-2 space-y-3">
+                <h4 class="text-white text-base font-medium">Connect</h4>
+                <p>Sentics GmbH</p>
+                <p>Musterstraße 1A</p>
+                <p>10115 Berlin, Germany</p>
+                <p class="pt-2"><a href="mailto:info@sentics.de" class="text-sentics-orange hover:text-white transition duration-200">info@sentics.de</a></p>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/10 mt-8 pt-8 text-center text-xs">
+            &copy; 2025 Sentics GmbH. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- ANIMATION LOGIC ---
+
+        // 1. Hero Staggered Fade-In on Load
+        function staggerHero() {
+            document.querySelectorAll('.hero-stagger-initial').forEach(el => {
+                // Ensure a small delay for the browser to render before applying the transition
+                setTimeout(() => {
+                    el.classList.add('is-loaded');
+                }, 50); 
+            });
+        }
+        window.addEventListener('load', staggerHero);
+
+        // 2. Number Counting Animation (Utility Function)
+        const animateValue = (obj, end, duration, decimalPlaces = 0, prefix = "", suffix = "") => {
+            let startTimestamp = null;
+            // Get the starting value from the element content (should be 0)
+            const start = parseFloat(obj.textContent) || 0; 
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                
+                let currentValue = start + progress * (end - start);
+                
+                // Formatting for decimal places
+                if (decimalPlaces > 0) {
+                    // decimalPlaces is now correctly passed as a number between 0 and 100
+                    obj.textContent = prefix + currentValue.toFixed(decimalPlaces) + suffix;
+                } else {
+                    obj.textContent = prefix + Math.floor(currentValue) + suffix;
+                }
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    // Ensure the final value is exactly the target
+                    obj.textContent = prefix + end.toFixed(decimalPlaces) + suffix;
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+        
+        // 3. Intersection Observer Setup (for scroll-fade and stats count)
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Handle Fade-In-Up animation
+                    if (entry.target.classList.contains('fade-in-up')) {
+                        entry.target.classList.add('is-visible');
+                    }
+                    
+                    // Handle Stats Counting animation (only if it's the stats section)
+                    if (entry.target.hasAttribute('data-stats-section')) {
+                        entry.target.querySelectorAll('[data-stat-target]').forEach(stat => {
+                            const target = parseFloat(stat.getAttribute('data-stat-target'));
+                            const duration = parseInt(stat.getAttribute('data-stat-duration'));
+                            const decimal = parseInt(stat.getAttribute('data-stat-decimal')) || 0;
+                            const prefix = stat.getAttribute('data-stat-prefix') || "";
+                            const suffix = stat.getAttribute('data-stat-suffix') || "";
+                            
+                            // Correct signature: (obj, end, duration, decimalPlaces, prefix, suffix)
+                            animateValue(stat, target, duration, decimal, prefix, suffix);
+                        });
+                        // Stop observing the stats once counted
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        }, {
+            // Options: Start observing when 10% of the element is visible
+            threshold: 0.1 
+        });
+
+        // Apply observer to all scroll-animated elements
+        document.querySelectorAll('.fade-in-up').forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Apply observer to the dedicated stats section
+        document.querySelectorAll('[data-stats-section]').forEach(element => {
+            observer.observe(element);
+        });
+        
+    </script>
+</body>
+</html>
+
+
